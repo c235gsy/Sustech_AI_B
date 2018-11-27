@@ -114,9 +114,8 @@ class MinimaxGhost(GhostAgent):
             else:
                 dis = dis2
 
-            if manhattanDistance(state.getGhostPosition(1), state.getGhostPosition(2)) <= 1:
-                if dis1+dis2 >= 4:
-                    return 900
+            if manhattanDistance(state.getGhostPosition(1), state.getGhostPosition(2)) <= 2:
+                return 0
 
             if dis2+dis1 > dis1*dis1:
                 return 1000 - dis2+dis1 - dis
@@ -158,7 +157,6 @@ class MinimaxGhost(GhostAgent):
                 return result
 
         miniMax(state, 0, self.index)
-        max_index = ActionScore.index(max(ActionScore))
         print ActionScore
         print state.getLegalActions (self.index)
         #while  len(state.getLegalActions(self.index))
@@ -167,7 +165,7 @@ class MinimaxGhost(GhostAgent):
         dist = util.Counter ()
         for a in state.getLegalActions(self.index):
             dist[a] = 0
-        dist[dre] = 1.0
+        dist[dre] = 1
         dist.normalize()
         return dist
 
